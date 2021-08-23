@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %} {% block content %}
+<hr> {% if notif == 'Inscription reussis !' %}
+<div class="alert alert-info"> {{ notif }} Veuillez vous connecter <a href="{{ path('app_login') }}">ici</a> </div>
+
+{% elseif notif == 'Inscription echoue !' %}
+<div class="alert alert-danger"> {{ notif }} </div>
+
+{% endif %}
+<hr>
+<h1>Inscription</h1>
+{{ form(form) }} {% endblock content %}
