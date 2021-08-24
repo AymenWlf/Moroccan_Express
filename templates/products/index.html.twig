@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %} {% block title %}Nos Produits - MoroccanExpress{% endblock %} {% block content %}
+<style>
+    .product-item {
+        border: 1px solid rgb(52, 52, 52, 0.5);
+        margin-top: 50px;
+    }
+    
+    .product-subtitle {
+        font-size: 13px;
+    }
+    
+    .product-container {
+        margin-bottom: 20px;
+    }
+</style>
+<h1>Nos Produits</h1>
+<hr>
+<div class="row">
+    {% for product in products %}
+
+    <div class="product-container col-md-4 ">
+        <div class="product-item text-center ">
+            <img src="/uploads/{{product.illustration}}" class="card-img-top" alt="{{product.name}}">
+            <div class="card-body">
+                <h5>{{product.name}}</h5>
+                <span class="product-subtitle">{{product.subtitle}}</span>
+                <p>{{(product.price / 100)|number_format(2,',','.') }} Dhs</p>
+                <a href="#" class="btn  btn-outline-dark">En savoir plus</a>
+            </div>
+        </div>
+
+
+    </div>
+    {% endfor %}
+</div>
+<hr> {% endblock content %}

@@ -7,7 +7,7 @@
     <meta name="description" content="Tous nos produit sont fabrique au Maroc">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>{% block name %} Fournisseur de produits - 100% made in morocco {% endblock name %}</title>
+    <title>{% block title %}{% endblock title %}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -60,7 +60,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="sty-nav-link nav-link" href="#">Nos produits</a>
+                        <a class="sty-nav-link nav-link" href=" {{path('products')}} ">Nos produits</a>
                     </li>
                     <li class="nav-item active">
                         <a class="sty-nav-link nav-link" href="#">Qui sommes nous ?</a>
