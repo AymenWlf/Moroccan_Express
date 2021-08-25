@@ -37,7 +37,6 @@
         
         .sty-footer {
             text-align: center;
-            bottom: 0;
             width: 100%;
             padding: 10px;
             position: absolute;
@@ -139,7 +138,7 @@
     ================================================== -->
         <!-- Wrap the rest of the page in another container to center all the content. -->
 
-        <div class="container marketing {% if block ('carousel') is not defined %}mt-5{% endif %} ">
+        <div class="container-fluid marketing {% if block ('carousel') is not defined %}mt-5{% endif %} ">
             {% block content %} {% endblock content %}
         </div>
         <!-- /.container -->

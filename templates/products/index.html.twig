@@ -13,24 +13,38 @@
         margin-bottom: 20px;
     }
 </style>
-<h1>Nos Produits</h1>
-<hr>
+
 <div class="row">
-    {% for product in products %}
-
-    <div class="product-container col-md-4 ">
-        <div class="product-item text-center ">
-            <img src="/uploads/{{product.illustration}}" class="card-img-top" alt="{{product.name}}">
-            <div class="card-body">
-                <h5>{{product.name}}</h5>
-                <span class="product-subtitle">{{product.subtitle}}</span>
-                <p>{{(product.price / 100)|number_format(2,',','.') }} Dhs</p>
-                <a href="{{path('product',{'slug':product.slug})}} " class="btn  btn-outline-dark">En savoir plus</a>
-            </div>
-        </div>
-
-
+    <div class="col-md-3">
+        <h3>Filtrer</h3>
+        {{form(form)}}
     </div>
-    {% endfor %}
+
+    <div class="col-md-9">
+        <h3>Nos Produits</h3>
+        <hr>
+
+        <div class="row product-container">
+            {% for product in products %}
+            <div class="col-md-4">
+                <div class="product-item text-center ">
+                    <img src="/uploads/{{product.illustration}}" class="card-img-top" alt="{{product.name}}">
+                    <div class="card-body">
+                        <h5>{{product.name}}</h5>
+                        <span class="product-subtitle">{{product.subtitle}}</span>
+                        <p>{{(product.price / 100)|number_format(2,',','.') }} Dhs</p>
+                        <a href="{{path('product',{'slug':product.slug})}} " class="btn  btn-outline-dark">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+</div>
+
 </div>
 <hr> {% endblock content %}
