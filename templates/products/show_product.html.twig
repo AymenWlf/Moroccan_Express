@@ -15,7 +15,7 @@
         <p style="color: red;">{{(product.price / 100)|number_format(2,',','.') }} Dhs</p>
         <hr>
         <p>{{product.description}} </p>
-        <a href="#" class="btn btn-outline-dark">Ajouter au panier</a>
+        <a href="{{path('add_cart',{'id':product.id})}} " class="btn btn-outline-dark">Ajouter au panier</a>
     </div>
 </div>
 

@@ -11,6 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
 
     <style>
         body {
@@ -29,10 +30,12 @@
         .sty-nav-link {
             color: white;
             transition: all 0.5s;
+            font-size: 14px;
+            padding-left: 0;
         }
         
         .sty-nav-link:hover {
-            color: rgb(160, 160, 160);
+            color: rgb(20, 106, 255);
         }
         
         .sty-footer {
@@ -55,12 +58,12 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="{{ path('home') }}">MoroccanExpress</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class=" collapse navbar-collapse " id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="sty-nav-link nav-link" href=" {{path('products')}} ">Nos produits</a>
@@ -73,10 +76,13 @@
                     </li>
                 </ul>
 
+
+
                 {% if app.user %}
                 <a href="{{ path('account') }}" class="sty-nav-link nav-link ">Mon compte <small>({{ app.user.firstname }})</small>  </a> <a href="{{ path('app_logout') }}" class="sty-nav-link nav-link ">Deconnexion</a> {% else %}
                 <a href="{{ path('app_login') }}" class="sty-nav-link nav-link ">Connexion</a> <a href="{{ path('register') }}" class="sty-nav-link nav-link ">Inscription</a> {% endif %}
-
+                <a href="{{ path('cart') }}" class="sty-nav-link nav-link "><img src="{{asset('assets/img/shopping-cart.png')}} " alt="" height="25px">
+                </a>
             </div>
         </nav>
     </header>
@@ -138,7 +144,7 @@
     ================================================== -->
         <!-- Wrap the rest of the page in another container to center all the content. -->
 
-        <div class="container-fluid marketing {% if block ('carousel') is not defined %}mt-5{% endif %} ">
+        <div class="container marketing {% if block ('carousel') is not defined %}mt-5{% endif %} ">
             {% block content %} {% endblock content %}
         </div>
         <!-- /.container -->

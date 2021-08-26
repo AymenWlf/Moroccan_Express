@@ -36,6 +36,8 @@ class RegisterController extends AbstractController
             $entityManager -> persist($user);
             $entityManager -> flush();
             $notif = 'Inscription reussis !';
+
+            return $this->redirectToRoute('app_login');
         }else{
             $notif = 'Inscription echoue !';
         }
