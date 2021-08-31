@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %} {% block title %}Mes adresses - MoroccanExpress{% endblock %} {% block content %}
+<a href="{{path('account_address_add')}} " class=" btn btn-info btn-sm float-right">Ajouter une adresse</a>
+<h1>Mes adresses</h1>
+C'est dans cet espace ou vous pourrez gere vos adresses <br>
+<a href="{{path('account')}}">Retour</a>
+<hr> {% if app.user.addresses|length == 0 %}
+<p class="text-center">Vous n'avez aucune adresse pour le moment, si vous voulez en cree cliquez <a href="{{path('account_address_add')}} ">ici</a></p>
+{% else %}
+<div class="row">
+    {% for address in app.user.addresses %}
+    <div class="col-md-4 text-center">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{address.name}} </h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{address.city}} </h6>
+                <p class="card-text my-2 text-center">{{address.address}} <br>
+                    <p class="my-3 text-center" style="color: rgb(53, 53, 53);">( {{address.postal}} - {{address.city}} - {{address.country}} )</p>
+                </p>
+                <div class="text-center">
+                    <p><a href="{{path('account_address_edit',{'id' : address.id })}} " class="card-link">Modifier</a> | <a href="{{path('account_address_remove',{'id' : address.id })}}" class="card-link ml-0">Supprimer</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endif %}
+<hr> {% endblock %}

@@ -32,7 +32,7 @@ class Cart
     }
 
     public function get(){
-        return $this->session->get('cart');;
+        return $this->session->get('cart');
     }
 
 
@@ -67,18 +67,23 @@ class Cart
     public function getFull()
     {
         $cartComplete = [];
-
-        foreach ($this->get() as $id => $quantity) {
-            $cartProduct = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id]);
-            if (!$cartProduct) {
-                $this->delete($id);
-                continue;
+        
+        if ($this->get() == null) {
+            return null;
+        }else{
+            foreach ($this->get() as $id => $quantity) {
+                $cartProduct = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id]);
+                if (!$cartProduct) {
+                    $this->delete($id);
+                    continue;
+                }
+                $cartComplete[] = [
+                    'product' => $cartProduct,
+                    'quantity' => $quantity
+                ];
             }
-            $cartComplete[] = [
-                'product' => $cartProduct,
-                'quantity' => $quantity
-            ];
         }
+        
 
         return $cartComplete;
     }
