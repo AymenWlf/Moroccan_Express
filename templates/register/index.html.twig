@@ -4,7 +4,8 @@
 
 {% elseif notif == 'Inscription echoue !' %}
 <div class="alert alert-danger"> {{ notif }} </div>
-
+{% else %}
+<p>Pour se connecter , appuille <a href="{{path('app_login')}} ">ici</a></p>
 {% endif %}
 <hr>
 <h1>Inscription</h1>

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %} {% block title %}Validation - MoroccanExpress{% endblock %} {% block content %}
+<h1>Mon récapitulatif</h1>
+<p>Vérifiez vos informations avant de payer votre commande</p>
+<hr>
+<div class="row mb-5">
+    <div class="col-md-6">
+        <div class="mb-4">
+            <strong>Mon adresse de livraison</strong>
+        </div>
+
+        <div class="form-check">
+            {{delivery|raw}}
+        </div>
+
+        <hr>
+        <div class="mb-4">
+            <strong>Mon transporteur</strong>
+        </div>
+        <div class="form-check">
+            {{carrier.name}} <br> {{carrier.description}} <br> {{carrier.price}}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="text-center mb-4">
+            <strong>Ma commande</strong>
+        </div>
+        <div class="order-sumary">
+            {% set total = null %}{% for key,product in cart %}
+            <div class="row {% if key > 0 %}mt-2 {% endif %}">
+                <div class="col-md-3">
+                    <img src="/uploads/{{product.product.illustration}}" alt="{{product.product.name}}" height="75px" class="mr-2">
+                </div>
+                <div class="col-md-6 my-auto">
+                    {{product.product.name}}<br>
+                    <small>{{product.product.name}} </small><br> <small>x {{product.quantity}}</small>
+                </div>
+                <div class="col-md-3 my-auto">
+                    {{(product.product.price / 100)|number_format(1,',','.') }} Dhs
+                </div>
+                {% set total = total + (product.product.price * product.quantity) %}
+            </div>{% endfor %}
+
+        </div>
+        <hr>
+
+        <div class="text-start my-3">
+            <strong class="mr-1">Sous-total:  </strong> {{(total / 100)|number_format(1,',','.') }} Dhs <br>
+            <strong class="mr-1">Livraison:    </strong> {{carrier.price }} Dhs
+        </div>
+        <hr>
+        <div class="text-start my-3">
+            <strong class="mr-1">Total:</strong> {{((total + carrier.price) / 100)|number_format(1,',','.') }} Dhs
+        </div>
+
+        <a href="" class="btn btn-block btn-success">Payez : {{((total + carrier.price) / 100)|number_format(1,',','.') }} Dhs</a>
+
+
+    </div>
+
+    <div class="col-md-6">
+
+    </div>
+</div>
+
+{% endblock content %}

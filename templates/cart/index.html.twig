@@ -50,7 +50,7 @@
     <b style="font-weight: 700;">Nombre de produits : {{ cart|length}} </b><br>
     <b style="font-weight: 700;">Prix total : {{(total / 100)|number_format(2,',','.') }} Dhs </b>
 </div>
-<a href="" class="btn btn-success btn-block mb-5 my-2">Valider ma commande</a> {% else %}
+<a href="{{path('order')}} " class="btn btn-success btn-block mb-5 my-2">Valider ma commande</a> {% else %}
 <hr>
 <p><b>Votre panier est vide , appuillez </b> <a href="{{path('products')}}">ici</a> <b>pour retourner vers nos produits</b></p>
 {% endif %} {% endblock content %}
