@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %} {% block title %}Ma commande - MoroccanExpress{% endblock %} {% block content %}
+<a href="{{path('home')}} " class=" btn btn-info btn-sm float-right">Acceuil</a>
+<h1>Ma commande : {{order.reference}}</h1>
+<a href="{{path('account')}}">Retour</a>
+<hr>
+<strong>Commande passée le : </strong>{{order.CreatedAt|date("d/m/Y")}} <br>
+<strong>Référence de ma commande : </strong><small>{{order.reference}}</small> <br>
+<strong>Transporteur choisie : </strong> {{order.carrierName}} <br> <br>
+<strong>Details : </strong> <br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Produit</th>
+            <th scope="col">Quantite</th>
+            <th scope="col">Prix Unitaire</th>
+            <th scope="col">Prix total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set total = null %} {% for product in order.orderDetails %}
+        <tr>
+            <th scope="row">{{product.product}} </th>
+            <td>{{product.quantity}} </td>
+            <td>{{(product.price / 100)|number_format(2,',','.')}} DH</td>
+            <td><strong> {{(product.total / 100)|number_format(2,',','.')}} DH</strong></td>
+        </tr>
+        {% set total = total + (product.total / 100) %} {% endfor %}
+    </tbody>
+</table>
+<div class="text-right">
+    <strong>Sous-total : </strong> {{(total)|number_format(2,',','.')}} DH<br>
+    <strong>Livraison : </strong> {{(order.carrierPrice / 100)|number_format(2,',','.')}} DH<br>
+    <strong>Total :  <span class=" text-success">{{((order.total + order.carrierPrice) / 100)|number_format(2,',','.')}} DH</span> </strong>
+</div>
+<hr> {% endblock %}

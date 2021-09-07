@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %} {% block title %}Mes commandes - MoroccanExpress{% endblock %} {% block content %}
+<a href="{{path('home')}} " class=" btn btn-info btn-sm float-right">Acceuil</a>
+<h1>Mes commandes</h1>
+C'est dans cet espace ou vous pourrez gere vos commandes <br>
+<a href="{{path('account')}}">Retour</a>
+<hr> {% if orders|length == 0 %}
+<p class="text-center">Vous n'avez passée aucune commande pour l'instant</p>
+{% else %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Référence</th>
+            <th scope="col">Passée le</th>
+            <th scope="col">Produit(s)</th>
+            <th scope="col">Total</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <th scope="row">{{order.reference}} </th>
+            <td>{{order.CreatedAt|date("d/m/Y")}}</td>
+            <td>{{order.orderDetails|length}}</td>
+            <td>{{((order.carrierPrice + order.getTotal) / 100)|number_format(2,',','.')}}</td>
+            <td><a href="{{path('account_order_show',{'reference' : order.reference})}} " class="btn btn-outline-dark float-right">Voir ma commande</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<hr> {% endblock %}

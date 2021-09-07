@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %} {% block title %}Résumé de ma commande - MoroccanExpress{% endblock %} {% block content %}
+<h2>Résumé de ma commande</h2>
+<p>
+    Bonjour <strong>{{order.user.firstname}}</strong> <strong>{{order.user.lastname}},</strong><br><br> Nous vous remercions pour votre commande n: <strong>{{order.reference}}</strong> Une confirmation vient de vous etre envoyée par email à l'adresse
+    <strong>{{order.user.email}}</strong>
+    <hr> Votre commande sera livrée par <strong>{{order.CarrierName}}</strong> à l'adresse suivante : <br>
+    <div class="form-check">
+        {{order.delivery|raw}}
+    </div>
+    <hr> Pour suivre votre commande , rendez vous dans votre <a href="{{path('account_order')}}">compte</a>
+</p>
+{% endblock %}
