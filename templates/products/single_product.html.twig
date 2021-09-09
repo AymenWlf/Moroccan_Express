@@ -1,0 +1,11 @@
+<a href="{{path('product',{'slug':product.slug})}} " class=" card-link" style="color: rgb(50, 50, 50);">
+    <div class="product-item text-center ">
+        <img src="/uploads/{{product.illustration}}" class="card-img-top" alt="{{product.name}}">
+        <div class="card-body">
+            <h5>{{product.name}}</h5>
+            <span class="product-subtitle">{{product.subtitle}}</span>
+            <p>{{(product.price / 100)|number_format(2,',','.') }} Dhs</p>
+
+        </div>
+    </div>
+</a>

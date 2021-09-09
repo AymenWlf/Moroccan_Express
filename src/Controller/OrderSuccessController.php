@@ -33,9 +33,9 @@ class OrderSuccessController extends AbstractController
         $order->setStripeSessionId($stripeSessionId);
         //Modifier IsPaid 
 
-        if (!$order->getIsPaid()) {
+        if ($order->getState() == 0) {
             $cart->remove();
-            $order->setIsPaid(1);
+            $order->setState(1);
             $this->entityManager->flush();
            
             $mail->send_order_confirm($order->getUser()->getEmail(),$order->getUser()->getFirstname(),$order->getTotal(),$order->getCarrierName(),$order->getReference());
