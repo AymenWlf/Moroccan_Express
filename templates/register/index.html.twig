@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %} {% block content %}
-<hr> {% if notif == 'Inscription reussis !' %}
-<div class="alert alert-info"> {{ notif }} Veuillez vous connecter <a href="{{ path('app_login') }}">ici</a> </div>
+<hr> {% if notif == 'Inscription reussis ! Veuillez confirmer votre email' %}
+<div class="alert alert-info"> {{ notif }} et si c'est dejà fait, veuillez vous connecter <a href="{{ path('app_login') }}">ici</a> </div>
 
 {% elseif notif == 'Inscription echoue !' %}
 <div class="alert alert-danger"> {{ notif }} </div>
+{% elseif notif == 'Votre email existe dejà dans note base de donnée !' %}
+<div class="alert alert-warning"> {{ notif }} </div>
 {% else %}
 <p>Pour se connecter , appuille <a href="{{path('app_login')}} ">ici</a></p>
 {% endif %}

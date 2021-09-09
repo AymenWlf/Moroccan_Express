@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-
-
-
+use App\class\Mailjet;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,19 +23,33 @@ class RegisterController extends AbstractController
     {
         $notif = null;
         $user = new User();
+        $mail = new Mailjet();
+        
         $form = $this->createForm(RegisterType::class,$user);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $user = $form->getData();
-            $password = $encoder->encodePassword($user,$user->getPassword());
-            $user->setPassword($password);
-            $entityManager= $this->getDoctrine()->getManager();
-            $entityManager -> persist($user);
-            $entityManager -> flush();
-            $notif = 'Inscription reussis !';
 
-            return $this->redirectToRoute('app_login');
+            $search_email = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
+
+            if (!$search_email) {
+                $password = $encoder->encodePassword($user,$user->getPassword());
+                $user->setPassword($password);
+                $entityManager= $this->getDoctrine()->getManager();
+                $entityManager -> persist($user);
+                $entityManager -> flush();
+                
+                $mail->send_register_confirm($user->getEmail(),$user->getFirstname());
+
+                $notif = 'Inscription reussis ! Veuillez confirmer votre email';
+            }else{
+                $notif = 'Votre email existe dejà dans note base de donnée !';
+            }
+
+            
+
+          
         }else{
             $notif = 'Inscription echoue !';
         }
