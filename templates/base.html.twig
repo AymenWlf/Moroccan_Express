@@ -103,6 +103,10 @@
                 <a href="{{ path('app_login') }}" class="sty-nav-link nav-link ">Connexion</a> <a href="{{ path('register') }}" class="sty-nav-link nav-link ">Inscription</a> {% endif %}
                 <a href="{{ path('cart') }}" class="sty-nav-link nav-link "><img src="{{asset('assets/img/shopping-cart.png')}} " alt="" height="25px">
                 </a>
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="/admin" class="sty-nav-link nav-link "><i class="fas fa-users-cog"></i></a> {% endif %}
+
+
             </div>
         </nav>
     </header>
