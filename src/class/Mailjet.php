@@ -73,4 +73,35 @@ class Mailjet
         $response->success() && dump($response->getData());
     }
 
+    public function send_reset_password($to_email,$to_name,$url)
+    {
+        $mj = new Client($this->api_key,$this->api_key_secret,true,['version' => 'v3.1']);
+        $body = [
+            'Messages' => [
+                [
+                    'From' => [
+                        'Email' => 'alinzgohi@gmail.com',
+                        'Name' => 'MoroccanExpress'
+                    ],
+                    'To' => [
+                        [
+                            'Email' => $to_email,
+                            'Name' => $to_name
+                        ]
+                    ],
+                    'TemplateID' => 3165718,
+                    'TemplateLanguage' => true,
+                    'Subject' => "Recuperatin du mot de passe",
+                    'Variables' => [
+                        'firstname' => $to_name,
+                        'Url' => $url,
+                    ]
+                ]
+            ]
+        ];
+
+        $response = $mj->post(Resources::$Email, ['body' => $body]);
+        $response->success() && dump($response->getData());
+    }
+
 }

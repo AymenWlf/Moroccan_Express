@@ -1,20 +1,15 @@
 {% extends 'base.html.twig' %} {% block title %}Se connecter - MoroccanExpress{% endblock %} {% block content %}
 <form method="post">
-    {% if error %}
-    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %} {% if app.user %}
-    <div class="mb-3">
-        Vous etes connecter en tant que {{ app.user.firstname }}, <a href="{{ path('app_logout') }}">Logout</a>
-    </div>
-    {% endif %}
-
     <div class="row block-small-center">
         <div class="col-md-7">
-            <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
+            {% for message in app.flashes('notice') %}
+            <div class="alert alert-info">{{message}} </div>
+            {% endfor %}
+
+            <h1 class="h3 mb-3 font-weight-normal">Mot de passe oublié</h1>
             <label for="inputEmail">Email</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-            <label for="inputPassword">Mot de passe</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <input type="email" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality. See https://symfony.com/doc/current/security/remember_me.html
 
@@ -27,12 +22,11 @@
 
 
             <button class="btn btn-lg btn-info btn-block btn-md  my-3" type="submit">
-                Se connecter
+                Vérifier
             </button>
             <hr>
             <div class="text-center my-3">
-                <p><a href="{{path('reset_password')}} ">Mot de passe oublié</a></p>
-                <p>Ou souhaitez-vous <a href="{{path('register')}} ">créer un compte</a></p>
+                <p>Ou souhaitez-vous <a href="{{path('app_login')}} ">vous connecter</a></p>
             </div>
 
         </div>

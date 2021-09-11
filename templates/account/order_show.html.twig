@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %} {% block title %}Ma commande - MoroccanExpress{% endblock %} {% block content %}
 <a href="{{path('home')}} " class=" btn btn-info btn-sm float-right">Acceuil</a>
 <h1>Ma commande : {{order.reference}}</h1>
-<a href="{{path('account')}}">Retour</a>
+<a href="{{path('account_order')}}">Retour</a>
 <hr>
 <strong>Commande passée le : </strong>{{order.CreatedAt|date("d/m/Y")}} <br>
 <strong>Référence de ma commande : </strong><small>{{order.reference}}</small> <br>

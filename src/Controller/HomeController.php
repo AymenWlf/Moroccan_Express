@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\class\Mailjet;
+use App\Entity\Header;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,9 +38,11 @@ class HomeController extends AbstractController
         // }
 
         $isBest_product = $this->entityManager->getRepository(Product::class)->findBy(['isBest' => 1]);
-        // dd($isBest_product);
+        $headers = $this->entityManager->getRepository(Header::class)->findAll();
+       
         return $this->render('home/index.html.twig',[
-            'products' => $isBest_product
+            'products' => $isBest_product,
+            'headers' => $headers
         ]);
     }
 }
