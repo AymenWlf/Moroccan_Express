@@ -11,11 +11,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous"> {% block style_cart %}{% endblock style_cart %}
     <style>
-        body {
-            position: relative;
+        body,
+        html {
+            height: 100%;
         }
         
         .bd-placeholder-img {
@@ -42,8 +42,9 @@
             text-align: center;
             width: 100%;
             padding: 10px;
-            position: absolute;
-            background-color: #dfeaff;
+            background-color: rgb(31, 31, 31);
+            color: #fff;
+            bottom: 0;
         }
         
         .block-small-center {
@@ -100,11 +101,9 @@
 
                 {% if app.user %}
                 <a href="{{ path('account') }}" class="sty-nav-link nav-link ">Mon compte <small>({{ app.user.firstname }})</small>  </a> <a href="{{ path('app_logout') }}" class="sty-nav-link nav-link ">Deconnexion</a> {% else %}
-                <a href="{{ path('app_login') }}" class="sty-nav-link nav-link ">Connexion</a> <a href="{{ path('register') }}" class="sty-nav-link nav-link ">Inscription</a> {% endif %}
-                <a href="{{ path('cart') }}" class="sty-nav-link nav-link "><img src="{{asset('assets/img/shopping-cart.png')}} " alt="" height="25px">
-                </a>
-                {% if is_granted('ROLE_ADMIN') %}
-                <a href="/admin" class="sty-nav-link nav-link "><i class="fas fa-users-cog"></i></a> {% endif %}
+                <a href="{{ path('app_login') }}" class="sty-nav-link nav-link ">Connexion</a> <a href="{{ path('register') }}" class="sty-nav-link nav-link ">Inscription</a> {% endif %} {% block panier %}{% endblock panier %} {% if is_granted('ROLE_ADMIN')
+                %}
+                <a href="/admin" class="sty-nav-link nav-link "><img src="{{asset('assets/img/admin.png')}} " alt="ADMIN" height="25px"></a> {% endif %}
 
 
             </div>
@@ -157,10 +156,11 @@
         <!-- /.container -->
 
         <!-- FOOTER -->
+        {% if block('footer') is defined %}
         <footer class="container-fluid sty-footer">
             <p class="float-right"><a href="#">Back to top</a></p>
             <p>&copy; 2017-2021 MoroccanExpress, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-        </footer>
+        </footer>{% endif %}
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.js')}}"></script>

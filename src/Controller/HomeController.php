@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\class\Cart;
 use App\class\Mailjet;
 use App\Entity\Header;
 use App\Entity\Product;
@@ -19,7 +20,7 @@ class HomeController extends AbstractController
         $this->entityManager = $entityManager;
     }
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function index(Cart $cart): Response
     {
         
         // $mail = new Mailjet();
@@ -39,10 +40,14 @@ class HomeController extends AbstractController
 
         $isBest_product = $this->entityManager->getRepository(Product::class)->findBy(['isBest' => 1]);
         $headers = $this->entityManager->getRepository(Header::class)->findAll();
+
+    
        
         return $this->render('home/index.html.twig',[
             'products' => $isBest_product,
-            'headers' => $headers
+            'headers' => $headers,
+            'cart' => $cart->getFull()
+            
         ]);
     }
 }

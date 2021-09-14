@@ -42,4 +42,22 @@ class AccountOrderController extends AbstractController
            'order' => $order
         ]);
     }
+
+    #[Route('/compte/mes-commandes/annulee/{reference}', name: 'account_order_cancel')]
+    public function cancel($reference): Response
+    {
+
+        $order = $this->entityManager->getRepository(Order::class)->findOneBy(['reference' => $reference]);
+       
+
+
+        if (!$order || $order->getUser() != $this->getUser()) {
+            return $this->redirectToRoute('account_order');
+        }
+         $order->setState(6);
+         $this->entityManager->flush();
+         
+        
+        return $this->redirectToRoute('account_order');
+    }
 }

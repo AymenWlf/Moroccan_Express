@@ -17,7 +17,7 @@ C'est dans cet espace ou vous pourrez gere vos adresses <br>
                     <p class="my-3 text-center" style="color: rgb(53, 53, 53);">( {{address.postal}} - {{address.city}} - {{address.country}} )</p>
                 </p>
                 <div class="text-center">
-                    <p><a href="{{path('account_address_edit',{'id' : address.id })}} " class="card-link">Modifier</a> | <a href="{{path('account_address_remove',{'id' : address.id })}}" class="card-link ml-0">Supprimer</a></p>
+                    <p><a href="{{path('account_address_edit',{'id' : address.id })}} " class="card-link btn btn-info">Modifier</a> <a href="{{path('account_address_remove',{'id' : address.id })}}" class="card-link ml-3 btn btn-outline-danger">Supprimer</a></p>
                 </div>
 
             </div>
@@ -27,5 +27,4 @@ C'est dans cet espace ou vous pourrez gere vos adresses <br>
 
 </div>
 
-{% endif %}
-<hr> {% endblock %}
+{% endif %} {% endblock %}

@@ -166,10 +166,12 @@ class OrderCrudController extends AbstractCrudController
                 'Préparation en cours' => 2,
                 'Livraison en cours' => 3,
                 'Livrée' => 4,
-                'Annulée' => 5
+                'Annulée' => 5,
+                'Annulée par User' => 6
             ]),
+            BooleanField::new('isPaid','Paiement'),
             MoneyField::new('total','Totals')->setCurrency('MAD'),
-            ArrayField::new('orderDetails','Produit Achetée')
+            ArrayField::new('orderDetails','Produit Achetée')->onlyOnDetail()
 
         ];
     }

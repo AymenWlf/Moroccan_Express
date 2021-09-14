@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %} {% block title %}Mon panier - MoroccanExpress{% endblock %} {% block content %}
+<a href="{{path('products')}} " class=" btn btn-info btn-sm float-right">Terminer mon shopping</a>
 <h1>Mon Panier</h1>
 {% if cart|length > 0 %}
 <p>Voici le recapitulatif de vos produits ajoute au panier :</p>
