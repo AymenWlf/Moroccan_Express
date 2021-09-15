@@ -18,7 +18,7 @@
             <aside class="col-md-3">
                 <nav class="list-group">
                     <a class="list-group-item active" href="#"> Vue d'ensemble </a>
-                    <a class="list-group-item" href=""> My Address </a>
+                    <a class="list-group-item" href="{{path('account_address')}}"> Mes Adresses </a>
                     <a class="list-group-item" href=""> My Orders </a>
                     <a class="list-group-item" href=""> My wishlist </a>
                     <a class="list-group-item" href=""> My Selling Items </a>
@@ -125,8 +125,8 @@
                                     <figure class="itemside  mb-3">
                                         <div class="aside"><img src="/uploads/{{product.illustration}}" class="border img-sm"></div>
                                         <figcaption class="info">
-                                            <time class="text-muted"><i class="fa fa-calendar-alt"></i>{{order.CreatedAt|date("d/m/Y")}}</time>
-                                            <p>{{product.product}} </p> 
+                                            <time class="text-muted"><i class="fa fa-calendar-alt mr-1"></i>{{order.CreatedAt|date("d/m/Y")}}</time>
+                                            <p class=" mr-1">{{product.product}}     <strong class="ml-1">x{{product.quantity}}</strong> </p>
                                             <span class="text-dark"> <strong> N° {{order.reference}}</strong> </span> <br/>
                                             {% if order.state == 1 %}
                                                 <span class="text-warning"> <strong>En attente</strong> </span>
