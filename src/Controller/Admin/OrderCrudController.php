@@ -40,17 +40,39 @@ class OrderCrudController extends AbstractCrudController
    
     public function configureActions(Actions $actions): Actions
     {
-        $updatePreparation = Action::new('updatePreparation',"Préparation en cours" , 'fas fa-box')->linkToCrudAction('updatePreparation');
-        $updateDelivery = Action::new('updateDelivery',"Livraison en cours", 'fas fa-truck')->linkToCrudAction('updateDelivery');
-        $Delivried = Action::new('Delivried',"Livrée" , 'fas fa-box-open')->linkToCrudAction('Delivried');
-        $Cancel = Action::new('Cancel',"Annulée", 'fas fa-minus-circle')->linkToCrudAction('Cancel');
+        $updatePreparation = Action::new('updatePreparation',"Préparation en cours" , 'fas fa-box')->linkToCrudAction('updatePreparation')->addCssClass('btn btn-info');
+        $updateDelivery = Action::new('updateDelivery',"Livraison en cours", 'fas fa-truck')->linkToCrudAction('updateDelivery')->addCssClass('btn btn-warning');
+        $Delivried = Action::new('Delivried',"Livrée" , 'fas fa-box-open')->linkToCrudAction('Delivried')->addCssClass('btn btn-success');
+        $Cancel = Action::new('Cancel',"Annulée", 'fas fa-minus-circle')->linkToCrudAction('Cancel')->addCssClass('btn btn-danger');
+        $Delete = Action::new('Delete',"Supprimer", 'fas fa-trash')->linkToCrudAction('Delete')->addCssClass('btn btn-outline-danger');
 
         return $actions
+            ->add('detail', $Delete)->disable($Delete)
             ->add('detail', $Cancel)
             ->add('detail', $Delivried)
             ->add('detail', $updateDelivery)
             ->add('detail', $updatePreparation)
-            ->add('index' , 'detail');
+            ->add('index' , 'detail')
+            ->setPermission(Action::DELETE,'ROLE_ADMIN');
+    }
+
+    public function Delete(AdminContext $context)
+    {
+        $order = $context->getEntity()->getInstance();
+       
+            $this->entityManager->remove($order);
+            $this->entityManager->flush();
+            $this->addFlash('notice',"<span class='alert alert-warning text-center'><strong>La commande : .".$order->getReference()." est supprimée definitivement de la base de donnée</strong></span>");
+        
+            $url = $this->adminUrlGenerator
+                ->setController(OrderCrudController::class)
+                ->setAction('index')
+                ->generateUrl();
+
+                
+            // mail
+       
+        return $this->redirect($url);
     }
 
     public function Cancel(AdminContext $context)
@@ -58,12 +80,12 @@ class OrderCrudController extends AbstractCrudController
         
         $order = $context->getEntity()->getInstance();
         if ($order->getState()==5) {
-            $this->addFlash('notice',"<span class=' alert-warning text-center'><strong>La commande : .".$order->getReference()." est dejà annulée</strong></span>");
+            $this->addFlash('notice',"<span class='alert alert-warning text-center'><strong>La commande : .".$order->getReference()." est dejà annulée</strong></span>");
         }else{
             $order->setState(5);
             $this->entityManager-> flush();
 
-            $this->addFlash('notice',"<span class=' alert-success text-center'><strong>La commande : .".$order->getReference()." est annulée</strong></span>");
+            $this->addFlash('notice',"<span class='alert alert-success text-center'><strong>La commande : .".$order->getReference()." est annulée</strong></span>");
         }
             $url = $this->adminUrlGenerator
                 ->setController(OrderCrudController::class)
@@ -81,12 +103,12 @@ class OrderCrudController extends AbstractCrudController
         
         $order = $context->getEntity()->getInstance();
         if ($order->getState()==4) {
-            $this->addFlash('notice',"<span class=' alert-warning text-center'><strong>La commande : .".$order->getReference()." est dejà livrée</strong></span>");
+            $this->addFlash('notice',"<span class='alert alert-warning text-center'><strong>La commande : .".$order->getReference()." est dejà livrée</strong></span>");
         }else{
             $order->setState(4);
             $this->entityManager-> flush();
 
-            $this->addFlash('notice',"<span class=' alert-success text-center'><strong>La commande : .".$order->getReference()." est livrée</strong></span>");
+            $this->addFlash('notice',"<span class='alert alert-danger text-center'><strong>La commande : .".$order->getReference()." est livrée</strong></span>");
         }
             $url = $this->adminUrlGenerator
                 ->setController(OrderCrudController::class)
@@ -104,12 +126,12 @@ class OrderCrudController extends AbstractCrudController
         
         $order = $context->getEntity()->getInstance();
         if ($order->getState()==2) {
-            $this->addFlash('notice',"<span class=' alert-warning text-center'><strong>La commande : .".$order->getReference()." est dejà en cours de préparation</strong></span>");
+            $this->addFlash('notice',"<span class='alert alert-warning text-center'><strong>La commande : .".$order->getReference()." est dejà en cours de préparation</strong></span>");
         }else{
             $order->setState(2);
             $this->entityManager-> flush();
 
-            $this->addFlash('notice',"<span class=' alert-success text-center'><strong>La commande : .".$order->getReference()." est en cours de préparation</strong></span>");
+            $this->addFlash('notice',"<span class='alert alert-success text-center'><strong>La commande : .".$order->getReference()." est en cours de préparation</strong></span>");
         }
             $url = $this->adminUrlGenerator
                 ->setController(OrderCrudController::class)
@@ -127,12 +149,12 @@ class OrderCrudController extends AbstractCrudController
         
         $order = $context->getEntity()->getInstance();
         if ($order->getState()==3) {
-            $this->addFlash('notice',"<span class=' alert-warning text-center'><strong>La commande : .".$order->getReference()." est dejà en cours de livraison</strong></span>");
+            $this->addFlash('notice',"<span class='alert alert-warning text-center'><strong>La commande : .".$order->getReference()." est dejà en cours de livraison</strong></span>");
         }else{
             $order->setState(3);
             $this->entityManager-> flush();
 
-            $this->addFlash('notice',"<span class=' alert-success text-center'><strong>La commande : .".$order->getReference()." est en cours de livraison</strong></span>");
+            $this->addFlash('notice',"<span class='alert alert-success text-center'><strong>La commande : .".$order->getReference()." est en cours de livraison</strong></span>");
         }
             $url = $this->adminUrlGenerator
                 ->setController(OrderCrudController::class)
@@ -162,7 +184,7 @@ class OrderCrudController extends AbstractCrudController
             MoneyField::new('carrierPrice','Frais de port')->setCurrency('MAD'),
             ChoiceField::new('state')->setChoices([
                 'Non payée' => 0,
-                'Payée' => 1,
+                'En attente' => 1,
                 'Préparation en cours' => 2,
                 'Livraison en cours' => 3,
                 'Livrée' => 4,

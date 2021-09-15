@@ -43,6 +43,11 @@ class OrderDetails
      */
     private $total;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $illustration;
+
     public function __toString()
     {
         return $this->getProduct().' x '. $this->getQuantity();
@@ -108,6 +113,18 @@ class OrderDetails
     public function setTotal(float $total): self
     {
         $this->total = $total;
+
+        return $this;
+    }
+
+    public function getIllustration(): ?string
+    {
+        return $this->illustration;
+    }
+
+    public function setIllustration(string $illustration): self
+    {
+        $this->illustration = $illustration;
 
         return $this;
     }

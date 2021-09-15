@@ -60,4 +60,22 @@ class AccountOrderController extends AbstractController
         
         return $this->redirectToRoute('account_order');
     }
+
+    #[Route('/compte/mes-commandes/supprimer/{reference}', name: 'account_order_remove')]
+    public function remove($reference): Response
+    {
+
+        $order = $this->entityManager->getRepository(Order::class)->findOneBy(['reference' => $reference]);
+       
+
+
+        if (!$order || $order->getUser() != $this->getUser()) {
+            return $this->redirectToRoute('account_order');
+        }
+         $this->entityManager->remove($order);
+         $this->entityManager->flush();
+         
+        
+        return $this->redirectToRoute('account_order');
+    }
 }

@@ -1,36 +1,4 @@
-{% extends 'base.html.twig' %} {% block title %}Acceuil - MoroccanExpress{% endblock title %} {% block panier %} {% block style_cart %}
-<link rel="stylesheet" href="{{ asset('assets/style.css')}}"> {% endblock style_cart %}
-<div class="shopping">
-    <span class="counter">{{cart|length}}</span>
-    <a href="{{ path('cart') }}" class="sty-nav-link nav-link"><img src="{{asset('assets/img/shopping-cart.png')}} " alt="" height="25px"></a>
-    <!-- Shopping Item -->
-
-    <div class="shopping-item">
-        <div class="dropdown-cart-header">
-            <span>{{cart|length}} Items</span>
-            <a href="{{path('cart')}}">Mon Panier</a>
-        </div>
-        <ul class="shopping-list" style="overflow-y: scroll;height:200px;">
-            {% set total = null %} {% for product in cart %}
-
-            <li class="" style="left:-20px">
-                <a href="{{path('delete_to_cart',{'id': product.product.id })}}" title="Remove this item"><img class="remove" src="{{asset('assets/img/cancel.png')}} " style="border: none;"></img>
-                </a>
-                <a class="cart-img" href="{{path('product',{'slug': product.product.slug })}}"><img src="/uploads/{{product.product.illustration}} " alt="{{product.product.name}} " height="70px" width="70px"></a>
-                <h4><a class=" mr-5" href="{{path('product',{'slug': product.product.slug })}}">{{product.product.name }} </a></h4>
-                <p class="quantity">{{product.quantity}}x - <span class="amount">{{product.product.price / 100|number_format(2,'.',',')}} DH</span></p>
-            </li>
-            {% set total = total + (product.product.price / 100) %} {% endfor %}
-        </ul>
-        <div class="bottom">
-            <div class="total">
-                <span>Total</span>
-                <span class="total-amount">{{total}} DH</span>
-            </div>
-            <a href="{{path('order')}} " class="btn animate">Valider votre panier</a>
-        </div>
-    </div>
-</div> {% endblock panier %} {% block carousel %} {% endblock carousel %} {% block content %}
+{% extends 'base.html.twig' %} {% block title %}Acceuil - MoroccanExpress{% endblock title %} {% block panier %} {% include "z-helpers/panier.html.twig" %} {% endblock panier %} {% block carousel %} {% endblock carousel %} {% block content %}
 <!-- Three columns of text below the carousel -->
 <h2>Nos meilleurs ventes</h2>
 <p>Decouvrez nos articles les plus vendus ce mois</p>
@@ -76,4 +44,4 @@
 
 
 <!-- /END THE FEATURETTES -->
-{% endblock content %}
+{% endblock content %} {% block footer %} {% endblock footer %}

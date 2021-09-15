@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\class\Cart;
 use App\class\Search;
 use App\Entity\Product;
 use App\Form\SearchType;
@@ -22,7 +23,7 @@ class ProductsController extends AbstractController
         $this->entityManager = $entityManager;
     }
     #[Route('/nos-produits', name: 'products')]
-    public function index(Request $request): Response
+    public function index(Request $request,Cart $cart): Response
     {
         
 
@@ -40,12 +41,13 @@ class ProductsController extends AbstractController
 
         return $this->render('products/index.html.twig', [
             'products' => $products,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'cart' => $cart->getFull()
         ]);
     }
 
     #[Route('/produit/{slug}', name: 'product')]
-    public function show($slug): Response
+    public function show($slug,Cart $cart): Response
     {
         $product = $this->entityManager->getRepository(Product::class)->findOneBy(['slug' => $slug]);
         $isBest_product = $this->entityManager->getRepository(Product::class)->findBy(['isBest' => 1]);
@@ -57,7 +59,8 @@ class ProductsController extends AbstractController
 
         return $this->render('products/show_product.html.twig', [
             'product' => $product,
-            'products' => $isBest_product
+            'products' => $isBest_product,
+            'cart' => $cart->getFull()
         ]);
     }
 }

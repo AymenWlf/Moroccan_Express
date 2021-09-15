@@ -12,6 +12,23 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous"> {% block style_cart %}{% endblock style_cart %}
+    <link rel="stylesheet" href="{{ asset('assets/style.css')}}">
+    <!-- jQuery -->
+    <script src="{{asset('assets/Ui-css/js/jquery-2.0.0.min.js')}}" type="text/javascript"></script>
+
+    <!-- Bootstrap4 files-->
+    <script src="{{asset('assets/Ui-css/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
+    <link href="{{asset('assets/Ui-css/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- Font awesome 5 -->
+    <link href="{{asset('assets/Ui-css/fonts/fontawesome/css/all.min.css')}}" type="text/css" rel="stylesheet">
+
+    <!-- custom style -->
+    <link href="{{asset('assets/Ui-css/css/ui.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/Ui-css/css/responsive.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- custom javascript -->
+    <script src="{{asset('assets/Ui-css/js/script.js')}}" type="text/javascript"></script>
     <style>
         body,
         html {
@@ -35,7 +52,7 @@
         }
         
         .sty-nav-link:hover {
-            color: rgb(20, 106, 255);
+            color: #F7941D;
         }
         
         .sty-footer {
@@ -102,8 +119,7 @@
                 {% if app.user %}
                 <a href="{{ path('account') }}" class="sty-nav-link nav-link ">Mon compte <small>({{ app.user.firstname }})</small>  </a> <a href="{{ path('app_logout') }}" class="sty-nav-link nav-link ">Deconnexion</a> {% else %}
                 <a href="{{ path('app_login') }}" class="sty-nav-link nav-link ">Connexion</a> <a href="{{ path('register') }}" class="sty-nav-link nav-link ">Inscription</a> {% endif %} {% block panier %}{% endblock panier %} {% if is_granted('ROLE_ADMIN')
-                %}
-                <a href="/admin" class="sty-nav-link nav-link "><img src="{{asset('assets/img/admin.png')}} " alt="ADMIN" height="25px"></a> {% endif %}
+                %} {% endif %}
 
 
             </div>
@@ -157,10 +173,9 @@
 
         <!-- FOOTER -->
         {% if block('footer') is defined %}
-        <footer class="container-fluid sty-footer">
-            <p class="float-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2017-2021 MoroccanExpress, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-        </footer>{% endif %}
+        <link rel="stylesheet" href="{{asset('assets/footer.css')}} ">
+
+        <!-- /End Footer Area -->{% endif %}
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.js')}}"></script>

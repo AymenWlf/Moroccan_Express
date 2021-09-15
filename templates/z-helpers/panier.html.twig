@@ -1,0 +1,56 @@
+<style>
+    @media screen and (max-width: 988px) {
+        .shopping,
+        .admin-icon {
+            display: none;
+        }
+    }
+</style>
+
+<div class="shopping">
+    <span class="counter">{{cart|length}}</span>
+    <a href="{{ path('cart') }}" class="sty-nav-link nav-link"><img src="{{asset('assets/img/shopping-cart.png')}} " alt="" height="25px"></a>
+    <!-- Shopping Item -->
+
+    <div class="shopping-item">
+        <div class="dropdown-cart-header">
+            <span>{{cart|length}} Items</span>
+            <a href="{{path('cart')}}">Mon Panier</a>
+        </div>
+        {% if cart|length > 0 %}
+        <ul class="shopping-list" style="overflow-y: scroll;height:200px;">
+
+
+
+            {% set total = null %} {% for product in cart %}
+
+            <li class="" style="left:-20px">
+                <a href="{{path('delete_to_cart',{'id': product.product.id })}}" title="Remove this item"><img class="remove" src="{{asset('assets/img/cancel.png')}} " style="border: none;"></img>
+                </a>
+                <a class="cart-img" href="{{path('product',{'slug': product.product.slug })}}"><img src="/uploads/{{product.product.illustration}} " alt="{{product.product.name}} " height="70px" width="70px"></a>
+                <h4><a class=" mr-5" href="{{path('product',{'slug': product.product.slug })}}">{{product.product.name }} </a></h4>
+                <p class="quantity">{{product.quantity}}x - <span class="amount">{{product.product.price / 100|number_format(2,'.',',')}} DH</span></p>
+            </li>
+            {% set total = total + (product.product.price / 100) %} {% endfor %}
+        </ul>
+        <div class="bottom">
+            <div class="total">
+                <span>Total</span>
+                <span class="total-amount">{{total}} DH</span>
+            </div>
+            <a href="{{path('order')}} " class="btn animate">Valider votre panier</a>
+        </div>
+        {% else %}
+        <h4 class=" text-c">Panier Vide</h4>
+        {% endif %}
+
+    </div>
+</div>
+<a href="/admin" class="admin-icon sty-nav-link nav-link "><img src="{{asset('assets/img/admin.png')}} " alt="ADMIN" height="25px"></a>
+
+<div class=" d-lg-none">
+    <a href="{{ path('cart') }}" class="sty-nav-link nav-link ">Mon Panier</a>
+</div>
+<div class=" d-lg-none">
+    <a href="/admin" class="sty-nav-link nav-link">Admin</a>
+</div>
