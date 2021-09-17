@@ -1,3 +1,70 @@
+body,
+html,
+main {
+    height: 100%;
+    background-color: #fff;
+}
+
+.nav {
+    height: 65px;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.sty-nav-link {
+    color: white;
+    transition: all 0.5s;
+    font-size: 14px;
+    padding-left: 0;
+}
+
+.sty-nav-link:hover {
+    color: #F7941D;
+}
+
+.sty-footer {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(31, 31, 31);
+    color: #fff;
+    bottom: 0;
+}
+
+.block-small-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.form-check {
+    background-color: #f4f8ff;
+    padding: 20px 65px;
+    margin-top: 7px;
+}
+
+.col-form-label {
+    font-weight: bold;
+}
+
+.order-sumary {
+    background-color: #f4f8ff;
+    padding: 20px;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+
 /* PANIER */
 
 .shopping {

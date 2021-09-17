@@ -12,91 +12,16 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous"> {% block style_cart %}{% endblock style_cart %}
-    <link rel="stylesheet" href="{{ asset('assets/style.css')}}">
-    <!-- jQuery -->
-    <script src="{{asset('assets/Ui-css/js/jquery-2.0.0.min.js')}}" type="text/javascript"></script>
+     <link href="{{asset('assets/css/style.css')}} " rel="stylesheet" type="text/css">
 
-    <!-- Bootstrap4 files-->
-    <script src="{{asset('assets/Ui-css/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
-    <link href="{{asset('assets/Ui-css/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
-
-    <!-- Font awesome 5 -->
-    <link href="{{asset('assets/Ui-css/fonts/fontawesome/css/all.min.css')}}" type="text/css" rel="stylesheet">
-
-    <!-- custom style -->
-    <link href="{{asset('assets/Ui-css/css/ui.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/Ui-css/css/responsive.css')}}" rel="stylesheet" type="text/css" />
-
-    <!-- custom javascript -->
-    <script src="{{asset('assets/Ui-css/js/script.js')}}" type="text/javascript"></script>
-    <style>
-        body,
-        html {
-            height: 100%;
-        }
-        
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        
-        .sty-nav-link {
-            color: white;
-            transition: all 0.5s;
-            font-size: 14px;
-            padding-left: 0;
-        }
-        
-        .sty-nav-link:hover {
-            color: #F7941D;
-        }
-        
-        .sty-footer {
-            text-align: center;
-            width: 100%;
-            padding: 10px;
-            background-color: rgb(31, 31, 31);
-            color: #fff;
-            bottom: 0;
-        }
-        
-        .block-small-center {
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .form-check {
-            background-color: #f4f8ff;
-            padding: 20px 65px;
-            margin-top: 7px;
-        }
-        
-        .col-form-label {
-            font-weight: bold;
-        }
-        
-        .order-sumary {
-            background-color: #f4f8ff;
-            padding: 20px;
-        }
-        
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
+     
     <!-- Custom styles for this template -->
     <link href="{{ asset('assets/css/carousel.css')}}" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark"> 
             <a class="navbar-brand" href="{{ path('home') }}">MoroccanExpress</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
