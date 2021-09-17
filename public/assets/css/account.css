@@ -1,0 +1,18 @@
+/* Mon compte */
+
+.btn-account {
+    height: 150px;
+    width: 250px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(123, 123, 123);
+    font-weight: bold;
+    background-color: #ffa502;
+    border: none;
+}
+
+.btn-account:hover {
+    background-color: #c0c9cd;
+}
