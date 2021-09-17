@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %} {% block title %}Mes adresses - MoroccanExpress{% endblock %} {% block content %}
-{# <a href="{{path('account_address_add')}} " class=" btn btn-info btn-sm float-right">Ajouter une adresse</a>
+<a href="{{path('account_address_add')}} " class=" btn btn-info btn-sm float-right">Ajouter une adresse</a>
 <h1>Mes adresses</h1>
 C'est dans cet espace ou vous pourrez gere vos adresses <br>
 <a href="{{path('account')}}">Retour</a>
@@ -25,48 +25,7 @@ C'est dans cet espace ou vous pourrez gere vos adresses <br>
     </div>
     {% endfor %}
 
-</div> #}
-
-
-<section class="section-content padding-y">
-	<div class="container">
-	
-	<div class="row">
-		<aside class="col-md-3">
-			<nav class="list-group">
-				<a class="list-group-item" href="page-profile-main.html"> Vue d'ensemble  </a>
-				<a class="list-group-item active" href="page-profile-address.html"> Mes Adresses </a>
-				<a class="list-group-item" href="page-profile-orders.html"> My Orders </a>
-				<a class="list-group-item" href="page-profile-wishlist.html"> My wishlist </a>
-				<a class="list-group-item" href="page-profile-seller.html"> My Selling Items </a>
-				<a class="list-group-item" href="page-profile-setting.html"> Settings </a>
-				<a class="list-group-item" href="page-index-1.html"> Log out </a>
-			</nav>
-		</aside> <!-- col.// -->
-		<main class="col-md-9">
-
-		<a href="{{path('account_address_add')}} " class="btn btn-light mb-3"> <i class="fa fa-plus"></i> Add new address </a>
-
-        <div class="row">
-        {% for address in app.user.addresses %}
-            {# <pre>
-                {{ dump(address) }}
-            </pre> #}
-        
-            <div class="col-md-6">
-                <article class="box mb-4">
-                    <h5>{{address.name}}  {% if address.company %}  :<strong> {{address.company}} </strong> {% endif %} </h5>
-                    <p>{{address.address}}<br> {{address.postal}},{{address.city}},{{address.country}} <br> {{address.phone}}  </p>
-                    <a href="#" class="btn btn-light disabled"> <i class="fa fa-check"></i> Default</a> <a href="{{path('account_address_edit',{'id' : address.id })}} " class="btn btn-light"> <i class="fa fa-pen"></i> </a>   <a href="{{path('account_address_remove',{'id' : address.id })}}" class="btn btn-light"> <i class="text-danger fa fa-trash"></i>  </a>
-                </article>
-            </div>  <!-- col.// -->
-        {% endfor %}
-        </div> <!-- row.// -->
-
-	</main> <!-- col.// -->
 </div>
 
-</div> <!-- container .//  -->
-</section>
 
-{# {% endif %} #}{% endblock %} 
+{% endif %}{% endblock %} 
